@@ -1,245 +1,312 @@
 ---
-title: API Reference
+title: PelotonZap API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
+  - php
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+
+[//]: # (  - errors)
 
 search: true
 
 code_clipboard: true
 
 meta:
-  - name: description
-    content: Documentation for the Kittn API
+  - name: Documentation for the PelotonZap API
+    content: Documentation for the PelotonZap API
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the PelotonZap API documentation.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+We have language bindings in Shell, PHP, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> Authorization header example:
 
 ```shell
-# With shell, you can just pass the correct header with each request
 curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+  --header "Authorization: Bearer qwertyuiopasdfghjkl"
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer qwertyuiopasdfghjkl");
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+```php
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'api_endpoint_here',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Authorization: Bearer qwertyuiopasdfghjkl',
+  ),
+));
+```
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+> Make sure to replace `qwertyuiopasdfghjkl` with your API key.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+PelotonZap uses API keys to allow access to the API. An API key can be obtained by [registering](https://www.pelotonzap.io/register) for an account and creating a key.
 
-`Authorization: meowmeowmeow`
+PelotonZap expects the API key to be included in all API requests to the server in an `Authorization` header as a Bearer token:
+
+`Authorization: Bearer qwertyuiopasdfghjkl`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
 </aside>
 
-# Kittens
+# User
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get Current User
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
+curl --location --request GET 'https://api.pelotonzap.io/user' \
+--header 'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
+```
+```php
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://api.pelotonzap.io/user',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy',
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
 ```
 
 ```javascript
-const kittn = require('kittn');
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy");
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+var raw = "";
 
-> The above command returns JSON structured like this:
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+fetch("https://api.pelotonzap.io/user", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "id": 21,
+    "name": "Some User",
+    "email": "someuser@email.com",
+    "email_verified_at": null,
+    "two_factor_secret": null,
+    "two_factor_recovery_codes": null,
+    "created_at": "2021-11-17T05:25:51.000000Z",
+    "updated_at": "2021-12-16T05:09:15.000000Z"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Retrieve the current user (identified by API Key).
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://api.pelotonzap.io/user`
 
-### URL Parameters
+# Workout
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Get Workouts
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
+curl --location --request GET 'https://api.pelotonzap.io/api/v1/workouts' \
+--header 'Accept: application/vnd.api+json' \
+--header 'Content-Type: application/vnd.api+json' \
+--header 'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
 ```
 
 ```javascript
-const kittn = require('kittn');
+var myHeaders = new Headers();
+myHeaders.append("Accept", "application/vnd.api+json");
+myHeaders.append("Content-Type", "application/vnd.api+json");
+myHeaders.append("Authorization", "Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy");
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+var raw = "";
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://api.pelotonzap.io/api/v1/workouts", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+```php
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://api.pelotonzap.io/api/v1/workouts',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Accept: application/vnd.api+json',
+    'Content-Type: application/vnd.api+json',
+    'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "data": [
+    {
+      "type": "workouts",
+      "id": "181",
+      "attributes": {
+        "createdAt": "2021-12-17T05:40:41.000000Z",
+        "updatedAt": "2021-12-17T05:40:41.000000Z",
+        "pelotonId": "e43bfda89ab541ae97821f295a8b1903"
+      },
+      "links": {
+        "self": "https://api.pelotonzap.io/api/v1/workouts/181"
+      }
+    },
+    {
+      "type": "workouts",
+      "id": "182",
+      "attributes": {
+        "createdAt": "2021-12-17T05:40:41.000000Z",
+        "updatedAt": "2021-12-17T05:40:41.000000Z",
+        "pelotonId": "5c01724c4cca4bbf90bc2e0815360855"
+      },
+      "links": {
+        "self": "https://api.pelotonzap.io/api/v1/workouts/182"
+      }
+    }
+  ]
 }
 ```
 
-This endpoint deletes a specific kitten.
+Retrieve all the workouts for the current user (identified by API Key).
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`GET http://api.pelotonzap.io/api/v1/workouts`
 
-### URL Parameters
+## Queue Workout
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+```shell
+curl --location --request POST 'https://api.pelotonzap.io/queue/181' \
+--header 'Accept: application/vnd.api+json' \
+--header 'Content-Type: application/vnd.api+json' \
+--header 'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
+```
 
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("Accept", "application/vnd.api+json");
+myHeaders.append("Content-Type", "application/vnd.api+json");
+myHeaders.append("Authorization", "Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy");
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("https://api.pelotonzap.io/queue/181", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+```php
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://api.pelotonzap.io/queue/181',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_HTTPHEADER => array(
+    'Accept: application/vnd.api+json',
+    'Content-Type: application/vnd.api+json',
+    'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy',
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+```
+
+Requeue a `workout` to be sent to Zapier.
+
+Parameter | Required | Description
+--------- |----------| -----------
+id | true     | `workout` identifier
+
+### HTTP Request
+
+`POST https://api.pelotonzap.io/queue/{workout.id}`
