@@ -1,14 +1,10 @@
 ---
-title: API Reference
+title: PelotonZap API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -20,12 +16,12 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentation for the PelotonZap API
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the PelotonZap API documentation.
 
 We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
@@ -33,213 +29,127 @@ This example API documentation page was created with [Slate](https://github.com/
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> Authorization header example:
 
 ```shell
-# With shell, you can just pass the correct header with each request
 curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+  --header "Authorization: Bearer qwertyuiopasdfghjkl"
 ```
 
-```javascript
-const kittn = require('kittn');
+> Make sure to replace `qwertyuiopasdfghjkl` with your API key.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+PelotonZap uses API keys to allow access to the API. An API key can be obtained by [registering](https://www.pelotonzap.io/register) for an account and creating a key.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+PelotonZap expects the API key to be included in all API requests to the server in an `Authorization` header as a Bearer token:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Bearer qwertyuiopasdfghjkl`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
 </aside>
 
-# Kittens
+# User
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get Current User
 
 ```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl --location --request GET 'https://api.pelotonzap.io/user' \
+--header 'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "id": 21,
+    "name": "Some User",
+    "email": "someuser@email.com",
+    "email_verified_at": null,
+    "two_factor_secret": null,
+    "two_factor_recovery_codes": null,
+    "created_at": "2021-11-17T05:25:51.000000Z",
+    "updated_at": "2021-12-16T05:09:15.000000Z"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Retrieve the current user (identified by API Key).
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://api.pelotonzap.io/user`
 
-### URL Parameters
+# Workout
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Get Workouts
 
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+curl --location --request GET 'https://api.pelotonzap.io/api/v1/workouts' \
+--header 'Accept: application/vnd.api+json' \
+--header 'Content-Type: application/vnd.api+json' \
+--header 'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "data": [
+    {
+      "type": "workouts",
+      "id": "181",
+      "attributes": {
+        "createdAt": "2021-12-17T05:40:41.000000Z",
+        "updatedAt": "2021-12-17T05:40:41.000000Z",
+        "pelotonId": "e43bfda89ab541ae97821f295a8b1903"
+      },
+      "links": {
+        "self": "https://api.pelotonzap.io/api/v1/workouts/181"
+      }
+    },
+    {
+      "type": "workouts",
+      "id": "182",
+      "attributes": {
+        "createdAt": "2021-12-17T05:40:41.000000Z",
+        "updatedAt": "2021-12-17T05:40:41.000000Z",
+        "pelotonId": "5c01724c4cca4bbf90bc2e0815360855"
+      },
+      "links": {
+        "self": "https://api.pelotonzap.io/api/v1/workouts/182"
+      }
+    }
+  ]
 }
 ```
 
-This endpoint deletes a specific kitten.
+Retrieve all the workouts for the current user (identified by API Key).
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`GET http://api.pelotonzap.io/api/v1/workouts`
 
-### URL Parameters
+## Queue Workout
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+```shell
+curl --location --request POST 'https://api.pelotonzap.io/queue/181' \
+--header 'Accept: application/vnd.api+json' \
+--header 'Content-Type: application/vnd.api+json' \
+--header 'X-XSRF-TOKEN: eyJpdiI6IlJ4VEtrUTlzemt6cktKSTRnUjZSTnc9PSIsInZhbHVlIjoiUG52eXlTNUJFUG43YlVlYm4wekpXTm5vRjZJUE8wSTlFRnBXK0NVZzZZeTFEdUxRWFhEWVRQclQ4UlVpbWNPVVJ0YTQxcENabHdWeGxubkU2U0hSNWFCa0drQm5MSVhlMXdrOEdJemw0emZLbzlNUXRsQXhSU2RVRTFRaXNYWmsiLCJtYWMiOiI0YTUwODgwMjk0OTg2YWU0Yzg4Yzc5NjE2ZjJmNDQ1M2U4M2Q0OWUxNmMyYjc3ZjM3NTIyMzQ2ZDMyZTM0M2YzIiwidGFnIjoiIn0=' \
+--header 'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
+```
 
+> The above command returns JSON structured like this:
+
+```json
+
+```
+
+Requeue a `workout` to be sent to Zapier.
+
+Parameter | Required | Description
+--------- |----------| -----------
+id | true     | `workout` identifier
+
+### HTTP Request
+
+`POST https://api.pelotonzap.io/queue/{workout.id}`
