@@ -156,8 +156,6 @@ curl --location --request GET 'https://api.pelotonzap.io/api/v1/workouts' \
 
 ```javascript
 var myHeaders = new Headers();
-myHeaders.append("Referer", "https://api.pelotonzap.io");
-myHeaders.append("Origin", "https://api.pelotonzap.io");
 myHeaders.append("Accept", "application/vnd.api+json");
 myHeaders.append("Content-Type", "application/vnd.api+json");
 myHeaders.append("Authorization", "Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy");
@@ -249,7 +247,6 @@ Retrieve all the workouts for the current user (identified by API Key).
 curl --location --request POST 'https://api.pelotonzap.io/queue/181' \
 --header 'Accept: application/vnd.api+json' \
 --header 'Content-Type: application/vnd.api+json' \
---header 'X-XSRF-TOKEN: eyJpdiI6IlJ4VEtrUTlzemt6cktKSTRnUjZSTnc9PSIsInZhbHVlIjoiUG52eXlTNUJFUG43YlVlYm4wekpXTm5vRjZJUE8wSTlFRnBXK0NVZzZZeTFEdUxRWFhEWVRQclQ4UlVpbWNPVVJ0YTQxcENabHdWeGxubkU2U0hSNWFCa0drQm5MSVhlMXdrOEdJemw0emZLbzlNUXRsQXhSU2RVRTFRaXNYWmsiLCJtYWMiOiI0YTUwODgwMjk0OTg2YWU0Yzg4Yzc5NjE2ZjJmNDQ1M2U4M2Q0OWUxNmMyYjc3ZjM3NTIyMzQ2ZDMyZTM0M2YzIiwidGFnIjoiIn0=' \
 --header 'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
 ```
 
