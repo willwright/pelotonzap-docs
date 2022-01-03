@@ -75,7 +75,7 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
 ## Get Current User
 
 ```shell
-curl --location --request GET 'https://api.pelotonzap.io/user' \
+curl --location --request GET 'https://api.pelotonzap.io/api/v1/users' \
 --header 'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
 ```
 ```php
@@ -84,7 +84,7 @@ curl --location --request GET 'https://api.pelotonzap.io/user' \
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://api.pelotonzap.io/user',
+  CURLOPT_URL => 'https://api.pelotonzap.io/api/v1/users',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -93,7 +93,8 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'GET',
   CURLOPT_HTTPHEADER => array(
-    'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy',
+    'Accept: application/vnd.api+json',
+    'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
   ),
 ));
 
@@ -105,18 +106,16 @@ echo $response;
 
 ```javascript
 var myHeaders = new Headers();
+myHeaders.append("Accept", "application/vnd.api+json");
 myHeaders.append("Authorization", "Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy");
-
-var raw = "";
 
 var requestOptions = {
   method: 'GET',
   headers: myHeaders,
-  body: raw,
   redirect: 'follow'
 };
 
-fetch("https://api.pelotonzap.io/user", requestOptions)
+fetch("https://api.pelotonzap.io/api/v1/users", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
@@ -126,14 +125,21 @@ fetch("https://api.pelotonzap.io/user", requestOptions)
 
 ```json
 {
-    "id": 21,
-    "name": "Some User",
-    "email": "someuser@email.com",
-    "email_verified_at": null,
-    "two_factor_secret": null,
-    "two_factor_recovery_codes": null,
-    "created_at": "2021-11-17T05:25:51.000000Z",
-    "updated_at": "2021-12-16T05:09:15.000000Z"
+  "data": [
+    {
+      "type": "users",
+      "id": "1",
+      "attributes": {
+        "name": "John Doe",
+        "email": "johnDown@sometld.com",
+        "created_at": "2021-12-30 22:30:40",
+        "updated_at": "2021-12-30 22:50:36"
+      },
+      "links": {
+        "self": "https://api.pelotonzap.io/api/v1/users/1"
+      }
+    }
+  ]
 }
 ```
 
@@ -141,7 +147,7 @@ Retrieve the current user (identified by API Key).
 
 ### HTTP Request
 
-`GET https://api.pelotonzap.io/user`
+`GET https://api.pelotonzap.io/api/v1/users`
 
 # Workout
 
