@@ -6,10 +6,10 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
-            name="Documentation for the PelotonZap API"
-            content="Documentation for the PelotonZap API"
+            name="Documentation for the Spincast API"
+            content="Documentation for the Spincast API"
         >
-    <title>PelotonZap API Reference</title>
+    <title>Spincast API Reference</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -348,7 +348,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the PelotonZap API documentation.</p>
+<p>Welcome to the Spincast API documentation.</p>
 
 <p>We have language bindings in Shell, PHP, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 <h1 id='authentication'>Authentication</h1>
@@ -377,23 +377,23 @@
 <p>Make sure to replace <code>qwertyuiopasdfghjkl</code> with your API key.</p>
 </blockquote>
 
-<p>PelotonZap uses API keys to allow access to the API. An API key can be obtained by <a href="https://www.pelotonzap.io/register">registering</a> for an account and creating a key.</p>
+<p>Spincast uses API keys to allow access to the API. An API key can be obtained by <a href="https://www.spincast.io/register">registering</a> for an account and creating a key.</p>
 
-<p>PelotonZap expects the API key to be included in all API requests to the server in an <code>Authorization</code> header as a Bearer token:</p>
+<p>Spincast expects the API key to be included in all API requests to the server in an <code>Authorization</code> header as a Bearer token:</p>
 
 <p><code>Authorization: Bearer qwertyuiopasdfghjkl</code></p>
 
 <aside class="notice">
 You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
 </aside>
-<h1 id='user'>User</h1><h2 id='get-current-user'>Get Current User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://api.pelotonzap.io/api/v1/users'</span> <span class="se">\</span>
+<h1 id='user'>User</h1><h2 id='get-current-user'>Get Current User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://api.spincast.io/api/v1/users'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'</span>
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
 <span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-  <span class="no">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s1">'https://api.pelotonzap.io/api/v1/users'</span><span class="p">,</span>
+  <span class="no">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s1">'https://api.spincast.io/api/v1/users'</span><span class="p">,</span>
   <span class="no">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
   <span class="no">CURLOPT_ENCODING</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
   <span class="no">CURLOPT_MAXREDIRS</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
@@ -421,7 +421,7 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
   <span class="na">redirect</span><span class="p">:</span> <span class="dl">'</span><span class="s1">follow</span><span class="dl">'</span>
 <span class="p">};</span>
 
-<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.pelotonzap.io/api/v1/users</span><span class="dl">"</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.spincast.io/api/v1/users</span><span class="dl">"</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
@@ -441,7 +441,7 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
         </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-30 22:50:36"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.pelotonzap.io/api/v1/users/1"</span><span class="w">
+        </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.spincast.io/api/v1/users/1"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -449,8 +449,8 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
 </span></code></pre></div>
 <p>Retrieve the current user (identified by API Key).</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.pelotonzap.io/api/v1/users</code></p>
-<h1 id='workout'>Workout</h1><h2 id='get-workouts'>Get Workouts</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://api.pelotonzap.io/api/v1/workouts'</span> <span class="se">\</span>
+<p><code>GET https://api.spincast.io/api/v1/users</code></p>
+<h1 id='workout'>Workout</h1><h2 id='get-workouts'>Get Workouts</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://api.spincast.io/api/v1/workouts'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Accept: application/vnd.api+json'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/vnd.api+json'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'</span>
@@ -468,7 +468,7 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
   <span class="na">redirect</span><span class="p">:</span> <span class="dl">'</span><span class="s1">follow</span><span class="dl">'</span>
 <span class="p">};</span>
 
-<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.pelotonzap.io/api/v1/workouts</span><span class="dl">"</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.spincast.io/api/v1/workouts</span><span class="dl">"</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
@@ -477,7 +477,7 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
 <span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
 <span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-  <span class="no">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s1">'https://api.pelotonzap.io/api/v1/workouts'</span><span class="p">,</span>
+  <span class="no">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s1">'https://api.spincast.io/api/v1/workouts'</span><span class="p">,</span>
   <span class="no">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
   <span class="no">CURLOPT_ENCODING</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
   <span class="no">CURLOPT_MAXREDIRS</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
@@ -511,7 +511,7 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
         </span><span class="nl">"pelotonId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e43bfda89ab541ae97821f295a8b1903"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.pelotonzap.io/api/v1/workouts/181"</span><span class="w">
+        </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.spincast.io/api/v1/workouts/181"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -523,7 +523,7 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
         </span><span class="nl">"pelotonId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c01724c4cca4bbf90bc2e0815360855"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.pelotonzap.io/api/v1/workouts/182"</span><span class="w">
+        </span><span class="nl">"self"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.spincast.io/api/v1/workouts/182"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -531,8 +531,8 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
 </span></code></pre></div>
 <p>Retrieve all the workouts for the current user (identified by API Key).</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://api.pelotonzap.io/api/v1/workouts</code></p>
-<h2 id='queue-workout'>Queue Workout</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.pelotonzap.io/queue/181'</span> <span class="se">\</span>
+<p><code>GET http://api.spincast.io/api/v1/workouts</code></p>
+<h2 id='queue-workout'>Queue Workout</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.spincast.io/queue/181'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Accept: application/vnd.api+json'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/vnd.api+json'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'</span>
@@ -547,7 +547,7 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
   <span class="na">redirect</span><span class="p">:</span> <span class="dl">'</span><span class="s1">follow</span><span class="dl">'</span>
 <span class="p">};</span>
 
-<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.pelotonzap.io/queue/181</span><span class="dl">"</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://api.spincast.io/queue/181</span><span class="dl">"</span><span class="p">,</span> <span class="nx">requestOptions</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span>
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
@@ -556,7 +556,7 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
 <span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
 <span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-  <span class="no">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s1">'https://api.pelotonzap.io/queue/181'</span><span class="p">,</span>
+  <span class="no">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s1">'https://api.spincast.io/queue/181'</span><span class="p">,</span>
   <span class="no">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
   <span class="no">CURLOPT_ENCODING</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
   <span class="no">CURLOPT_MAXREDIRS</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
@@ -597,7 +597,7 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
 </tr>
 </tbody></table>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST https://api.pelotonzap.io/queue/{workout.id}</code></p>
+<p><code>POST https://api.spincast.io/queue/{workout.id}</code></p>
 
       </div>
       <div class="dark-box">
