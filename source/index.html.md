@@ -1,5 +1,5 @@
 ---
-title: PelotonZap API Reference
+title: Spincast API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -18,13 +18,13 @@ search: true
 code_clipboard: true
 
 meta:
-  - name: Documentation for the PelotonZap API
-    content: Documentation for the PelotonZap API
+  - name: Documentation for the Spincast API
+    content: Documentation for the Spincast API
 ---
 
 # Introduction
 
-Welcome to the PelotonZap API documentation.
+Welcome to the Spincast API documentation.
 
 We have language bindings in Shell, PHP, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
@@ -60,9 +60,9 @@ curl_setopt_array($curl, array(
 
 > Make sure to replace `qwertyuiopasdfghjkl` with your API key.
 
-PelotonZap uses API keys to allow access to the API. An API key can be obtained by [registering](https://www.pelotonzap.io/register) for an account and creating a key.
+Spincast uses API keys to allow access to the API. An API key can be obtained by [registering](https://www.spincast.io/register) for an account and creating a key.
 
-PelotonZap expects the API key to be included in all API requests to the server in an `Authorization` header as a Bearer token:
+Spincast expects the API key to be included in all API requests to the server in an `Authorization` header as a Bearer token:
 
 `Authorization: Bearer qwertyuiopasdfghjkl`
 
@@ -75,7 +75,7 @@ You must replace <code>qwertyuiopasdfghjkl</code> with your personal API key.
 ## Get Current User
 
 ```shell
-curl --location --request GET 'https://api.pelotonzap.io/api/v1/users' \
+curl --location --request GET 'https://api.spincast.io/api/v1/users' \
 --header 'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
 ```
 ```php
@@ -84,7 +84,7 @@ curl --location --request GET 'https://api.pelotonzap.io/api/v1/users' \
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://api.pelotonzap.io/api/v1/users',
+  CURLOPT_URL => 'https://api.spincast.io/api/v1/users',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -115,7 +115,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("https://api.pelotonzap.io/api/v1/users", requestOptions)
+fetch("https://api.spincast.io/api/v1/users", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
@@ -136,7 +136,7 @@ fetch("https://api.pelotonzap.io/api/v1/users", requestOptions)
         "updated_at": "2021-12-30 22:50:36"
       },
       "links": {
-        "self": "https://api.pelotonzap.io/api/v1/users/1"
+        "self": "https://api.spincast.io/api/v1/users/1"
       }
     }
   ]
@@ -147,14 +147,14 @@ Retrieve the current user (identified by API Key).
 
 ### HTTP Request
 
-`GET https://api.pelotonzap.io/api/v1/users`
+`GET https://api.spincast.io/api/v1/users`
 
 # Workout
 
 ## Get Workouts
 
 ```shell
-curl --location --request GET 'https://api.pelotonzap.io/api/v1/workouts' \
+curl --location --request GET 'https://api.spincast.io/api/v1/workouts' \
 --header 'Accept: application/vnd.api+json' \
 --header 'Content-Type: application/vnd.api+json' \
 --header 'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
@@ -175,7 +175,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("https://api.pelotonzap.io/api/v1/workouts", requestOptions)
+fetch("https://api.spincast.io/api/v1/workouts", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
@@ -187,7 +187,7 @@ fetch("https://api.pelotonzap.io/api/v1/workouts", requestOptions)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://api.pelotonzap.io/api/v1/workouts',
+  CURLOPT_URL => 'https://api.spincast.io/api/v1/workouts',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -222,7 +222,7 @@ echo $response;
         "pelotonId": "e43bfda89ab541ae97821f295a8b1903"
       },
       "links": {
-        "self": "https://api.pelotonzap.io/api/v1/workouts/181"
+        "self": "https://api.spincast.io/api/v1/workouts/181"
       }
     },
     {
@@ -234,7 +234,7 @@ echo $response;
         "pelotonId": "5c01724c4cca4bbf90bc2e0815360855"
       },
       "links": {
-        "self": "https://api.pelotonzap.io/api/v1/workouts/182"
+        "self": "https://api.spincast.io/api/v1/workouts/182"
       }
     }
   ]
@@ -245,12 +245,12 @@ Retrieve all the workouts for the current user (identified by API Key).
 
 ### HTTP Request
 
-`GET http://api.pelotonzap.io/api/v1/workouts`
+`GET http://api.spincast.io/api/v1/workouts`
 
 ## Queue Workout
 
 ```shell
-curl --location --request POST 'https://api.pelotonzap.io/queue/181' \
+curl --location --request POST 'https://api.spincast.io/queue/181' \
 --header 'Accept: application/vnd.api+json' \
 --header 'Content-Type: application/vnd.api+json' \
 --header 'Authorization: Bearer 36|Krc1ED0YfBamYWmyH2aoueoxdCNzjVc4IEgfaiOy'
@@ -268,7 +268,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("https://api.pelotonzap.io/queue/181", requestOptions)
+fetch("https://api.spincast.io/queue/181", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
@@ -280,7 +280,7 @@ fetch("https://api.pelotonzap.io/queue/181", requestOptions)
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://api.pelotonzap.io/queue/181',
+  CURLOPT_URL => 'https://api.spincast.io/queue/181',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -315,4 +315,4 @@ id | true     | `workout` identifier
 
 ### HTTP Request
 
-`POST https://api.pelotonzap.io/queue/{workout.id}`
+`POST https://api.spincast.io/queue/{workout.id}`
